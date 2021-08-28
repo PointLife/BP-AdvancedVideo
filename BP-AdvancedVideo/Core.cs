@@ -85,8 +85,8 @@ namespace BPAdvancedVideo
         public async void OnReloadRequestAsync()
         {
             SetConfigurationFilePaths();
-            await FileChecker.CheckFiles();
-            ReadConfigurationFiles();
+           // await FileChecker.CheckFiles();
+           // ReadConfigurationFiles();
         }
 
         public void OnVersionRequest(string callback)

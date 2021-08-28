@@ -131,7 +131,7 @@ namespace YouTube_DL_Handler
             processInfo.UseShellExecute = false;
             processInfo.RedirectStandardError = true;
             processInfo.RedirectStandardOutput = true;
-            Core.Instance.Logger.Log("4");
+            processInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
             var process = Process.Start(processInfo);
             var output = "";
