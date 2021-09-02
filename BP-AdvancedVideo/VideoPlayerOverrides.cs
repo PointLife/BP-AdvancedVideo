@@ -47,7 +47,7 @@ namespace BPAdvancedVideo
             if (VideoPermission(player, videoEntity, PermEnum.VideoDefault))
             {
                 int index = 0;
-                foreach (var option in videoEntity.svEntity.videoOptions)
+                foreach (var option in player.manager.svManager.videoOptions)
                 {
                     options.Add(new LabelID(option.label, index.ToString()));
                     index++;
