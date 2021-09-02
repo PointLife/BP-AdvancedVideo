@@ -167,7 +167,6 @@ namespace YouTube_DL_Handler
             }
             callback("https://pointlife.net/sv1/AdvancedVideo/error.mp4");
             ChalkerInstance.WriteError("Failed to fetch Data!");
-            callback(url);
         }
 
         internal void PlayDirectURL(string url, Action<string> svStartCustomVideo)
