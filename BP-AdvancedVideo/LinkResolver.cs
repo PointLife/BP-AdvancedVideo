@@ -116,6 +116,7 @@ namespace YouTube_DL_Handler
                     default:
                         ChalkerInstance.WriteMessage(webRequest.error);
                         ChalkerInstance.WriteMessage(webRequest.responseCode.ToString());
+                        callback("https://pointlife.net/sv1/AdvancedVideo/error.mp4");
                         yield break;
 
                 }
@@ -164,6 +165,7 @@ namespace YouTube_DL_Handler
                 callback(HandleJson(output));
                 yield break;
             }
+            callback("https://pointlife.net/sv1/AdvancedVideo/error.mp4");
             ChalkerInstance.WriteError("Failed to fetch Data!");
             callback(url);
         }
