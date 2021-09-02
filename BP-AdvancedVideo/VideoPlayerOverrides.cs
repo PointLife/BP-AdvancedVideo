@@ -58,7 +58,15 @@ namespace BPAdvancedVideo
             player.svPlayer.SendOptionMenu(title, videoEntity.ID, videoPanel, options.ToArray(), new LabelID[] { new LabelID("Select", string.Empty) });
         }
 
-        private bool VideoPermission(ShPlayer player, ShEntity videoPlayer, PermEnum permission) => videoPlayer && player.InActionRange(videoPlayer) && (player.InOwnApartment || player.svPlayer.HasPermissionBP(permission));
+        private bool VideoPermission(ShPlayer player, ShEntity videoPlayer, PermEnum permission) {
+
+            if(videoPlayer && player.InActionRange(videoPlayer) && player.svPlayer.HasPermissionBP(permission))
+            {
+                return true;
+            }
+            return false;
+
+        }
 
 
         [Target(GameSourceEvent.PlayerOptionAction, ExecutionMode.Test)]
