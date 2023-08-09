@@ -60,9 +60,9 @@ namespace BPAdvancedVideo
 
         private bool VideoPermission(ShPlayer player, ShEntity videoPlayer, PermEnum permission) {
 
-            if(videoPlayer && player.InActionRange(videoPlayer) && player.svPlayer.HasPermissionBP(permission))
+            if(videoPlayer)
             {
-                return true;
+                return player.svPlayer.HasPermission($"{Core.Instance.Info.GroupNamespace}.{(player.InOwnApartment ? "apartment" : "external")}.{permission.ToString()}");
             }
             return false;
 
