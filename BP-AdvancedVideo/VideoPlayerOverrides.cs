@@ -30,7 +30,12 @@ namespace BPAdvancedVideo
         {
             var options = new List<LabelID>();
 
-            if (VideoPermission(player, videoEntity, PermEnum.VideoCustom))
+			if (VideoPermission(player, videoEntity, PermEnum.VideoCustom))
+			{
+				options.Add(new LabelID("&cFast Forward", fastForward));
+
+			}
+			if (VideoPermission(player, videoEntity, PermEnum.VideoCustom))
             {
                 options.Add(new LabelID("&6Search for YoutubeVideo", searchVideo));
             }
@@ -96,7 +101,11 @@ namespace BPAdvancedVideo
                     {
                         videoEntity.svEntity.SvStartDefaultVideo(index);
                         player.svPlayer.DestroyMenu(videoPanel);
-                    }
+                    } else if(optionID == fastForward)
+                    {
+                        videoEntity.videoPlayer.time += 60;
+
+					}
                     return false;
                 default:
                     return true;
