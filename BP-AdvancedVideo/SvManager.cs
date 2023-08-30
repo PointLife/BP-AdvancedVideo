@@ -7,17 +7,16 @@ namespace BPAdvancedVideo.RegisteredEvents
 {
     public class OnStarted : IScript
     {
-        [Target(GameSourceEvent.ManagerStart, ExecutionMode.Event)]
-        public void OnEvent(SvManager svManager)
+        [Target(GameSourceEvent.ManagerStart, ExecutionMode.Additive)]
+        public void OnEvent()
         {
-            Core.Instance.SvManager = svManager;
+            Core.Instance.SvManager = SvManager.Instance ;
 
             CommandHandler.RegisterCommand("ForceApi", new Action<ShPlayer>(Command1));
 
         }
 
 
-        // Any optional parameters here will be optional with in-game commands too
         public void Command1(ShPlayer player)
         {
             Core.Instance.LinkResolver.BinaryFound = !Core.Instance.LinkResolver.BinaryFound;

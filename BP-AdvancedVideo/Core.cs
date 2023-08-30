@@ -31,7 +31,7 @@ namespace BPAdvancedVideo
 
         public IReader<Settings> SettingsReader { get; } = new Reader<Settings>();
 
-        public Settings Settings => SettingsReader.Parsed;
+        public Settings Settings => SettingsReader.Content;
 
         public I18n I18n { get; set; }
 
@@ -79,7 +79,7 @@ namespace BPAdvancedVideo
 
         public void ReadConfigurationFiles()
         {
-            SettingsReader.ReadAndParse();
+            SettingsReader.Read();
         }
 
         public async void OnReloadRequestAsync()

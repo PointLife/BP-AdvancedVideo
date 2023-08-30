@@ -19,8 +19,9 @@ namespace BPAdvancedVideo
         private const string videoPanel = "videoPanel";
         private const string customVideo = "customVideo";
         private const string searchVideo = "searchVideo";
+		private const string fastForward = "fastForward";
 
-        private const string stopVideo = "stopVideo";
+		private const string stopVideo = "stopVideo";
 
 
 
@@ -69,9 +70,9 @@ namespace BPAdvancedVideo
         }
 
 
-        [Target(GameSourceEvent.PlayerOptionAction, ExecutionMode.Test)]
+        [Target(GameSourceEvent.PlayerOptionAction, ExecutionMode.PreEvent)]
         public bool OnOptionAction(ShPlayer player, int targetID, string menuID, string optionID, string actionID)
-        {
+		{
             switch (menuID)
             {
                 case videoPanel:
@@ -102,7 +103,7 @@ namespace BPAdvancedVideo
             }
         }
 
-        [Target(GameSourceEvent.PlayerSubmitInput, ExecutionMode.Test)]
+        [Target(GameSourceEvent.PlayerSubmitInput, ExecutionMode.PreEvent)]
         public bool OnSubmitInput(ShPlayer player, int targetID, string menuID, string input)
         {
             switch (menuID)
