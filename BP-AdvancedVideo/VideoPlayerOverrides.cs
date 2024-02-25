@@ -3,6 +3,8 @@ using BrokeProtocol.Collections;
 using BrokeProtocol.Entities;
 using BrokeProtocol.Required;
 using BrokeProtocol.Utility;
+using BrokeProtocol.Utility.Networking;
+using ENet;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +34,7 @@ namespace BPAdvancedVideo
 
 			if (VideoPermission(player, videoEntity, PermEnum.VideoCustom))
 			{
-				options.Add(new LabelID("&cFast Forward", fastForward));
+				options.Add(new LabelID("&cFast Forward 60s", fastForward));
 
 			}
 			if (VideoPermission(player, videoEntity, PermEnum.VideoCustom))
@@ -86,7 +88,7 @@ namespace BPAdvancedVideo
                     if (optionID == customVideo && VideoPermission(player, videoEntity, PermEnum.VideoCustom))
                     {
                         player.svPlayer.SendGameMessage("BP-AdvancedVideo will try to resolve any URL!");
-                        player.svPlayer.SendInputMenu("Video Link", targetID, customVideo, InputField.ContentType.Standard, 128);
+                        player.svPlayer.SendInputMenu("Video Link", targetID, customVideo, InputField.ContentType.Standard, 255);
                     }
                     else if (optionID == searchVideo && VideoPermission(player, videoEntity, PermEnum.VideoCustom))
                     {
@@ -103,8 +105,8 @@ namespace BPAdvancedVideo
                         player.svPlayer.DestroyMenu(videoPanel);
                     } else if(optionID == fastForward)
                     {
-                        videoEntity.videoPlayer.time += 60;
-
+                        videoEntity.videoStartTime += 60;
+						videoEntity.svEntity.Send(SvSendType.Local, PacketFlags.Reliable, ClPacket.VideoPlay, videoEntity.ID, videoEntity.svEntity.videoURL, videoEntity.videoStartTime);
 					}
                     return false;
                 default:
